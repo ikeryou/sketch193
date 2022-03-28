@@ -93,17 +93,11 @@ vec3 rotate(vec3 p, float angle, vec3 axis){
 }
 
 void main(){
-
   vec3 p = position;
-  
 
   vec2 t = (time + position.xy) * 0.0025;
   float n1 = snoise(t) * 300.0;
-  
-  
-  
-  p.z += n1 * move.x * 0.5 * move.y;
-
+  p.z += n1 * move.x;
   
 
   vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
