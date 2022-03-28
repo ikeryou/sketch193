@@ -52,7 +52,7 @@ void main(){
   // // float n2 = snoise(position.yy * 0.01 +time info.x) * 10.0;
   // p.x += (n1) * move.x;
   // p.y += abs(n1) * move.y;
-  p.z += (n1) * move.x * 0.5;
+  p.z += n1 * move.x * 0.5 * move.y;
 
   // p = rotate(p, (move.x * 0.2) * info.y * 0.01, vec3(0.0, 0.0, 1.0));
 

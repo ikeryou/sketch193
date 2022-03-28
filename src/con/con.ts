@@ -51,17 +51,16 @@ export class Con extends Canvas {
               this._val = Number(e.alpha)
 
               // const alpha = e.alpha
-              Param.instance.debug.innerHTML = 'test ' + this._val
+              Param.instance.debug.innerHTML = 'beta ' + Number(e.beta) + ' gamma ' + Number(e.gamma)
 
               if((this._oldAng - this._val) > 300) {
                 this._rotCnt++
               }
               if((this._oldAng - this._val) < -300) {
                 this._rotCnt--
-                // this._rotCnt = Math.max(0, this._rotCnt)
               }
 
-              // this._move.x = Util.instance.radian
+              // this._move.y = Number(e.beta)
 
             }, true)
             document.querySelector('.l-btn')?.classList.add('-none')
