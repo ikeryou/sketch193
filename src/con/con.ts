@@ -157,8 +157,8 @@ export class Con extends Canvas {
         this._rotCnt++
       }
 
-      this._move.x = Math.sin(this._c * 0.1)
-      this._move.y = Math.cos(this._c * -0.078)
+      // this._move.x = Math.sin(this._c * 0.1)
+      // this._move.y = Math.cos(this._c * -0.078)
     } else {
       // this._oldAng = this._val
       // if((this._oldAng - this._val) > 300) {
