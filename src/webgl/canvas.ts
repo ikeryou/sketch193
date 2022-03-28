@@ -42,7 +42,7 @@ export class Canvas extends MyDisplay {
 
     protected _makeCamera():Camera {
         // return new OrthographicCamera(1, 1, 1, 1)
-        return new PerspectiveCamera(60, 1, 0.0000001, 50000)
+        return new PerspectiveCamera(80, 1, 0.0000001, 50000)
     }
 
     public updateCamera(camera:Camera, w:number = 10, h:number = 10) {

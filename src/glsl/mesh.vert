@@ -47,14 +47,14 @@ void main(){
   vec3 p = position;
   // p = rotate(p, ang * info.y * 0.01, vec3(1.0, 0.0, 0.0));
 
-  vec2 t = (position.xy) * 0.005;
+  vec2 t = (time + position.xy) * 0.0025;
   float n1 = snoise(t) * 300.0;
   // // float n2 = snoise(position.yy * 0.01 +time info.x) * 10.0;
   // p.x += (n1) * move.x;
   // p.y += abs(n1) * move.y;
-  p.z += (n1) * move.x;
+  p.z += (n1) * move.x * 0.5;
 
-  p = rotate(p, (move.x * 0.2) * info.y * 0.01, vec3(0.0, 0.0, 1.0));
+  // p = rotate(p, (move.x * 0.2) * info.y * 0.01, vec3(0.0, 0.0, 1.0));
 
   vec4 mvPosition = modelViewMatrix * vec4(p, 1.0);
 

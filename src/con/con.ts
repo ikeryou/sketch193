@@ -61,7 +61,7 @@ export class Con extends Canvas {
                 // this._rotCnt = Math.max(0, this._rotCnt)
               }
 
-              this._move.x = Util.instance.map(this._val, -1, 1, 0, 360)
+              // this._move.x = Util.instance.radian
 
             }, true)
             document.querySelector('.l-btn')?.classList.add('-none')
@@ -178,6 +178,7 @@ export class Con extends Canvas {
 
       const ang = this._val + (this._rotCnt * 360);
       this._ang += (ang - this._ang) * 0.1
+      this._move.x = Math.sin(Util.instance.radian(this._ang)) * 2
       this._setUni(this._mesh, 'ang', Util.instance.radian(this._ang))
 
 
