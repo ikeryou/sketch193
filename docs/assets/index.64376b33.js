@@ -97,7 +97,7 @@ void main(){
   vec3 p = position;
   
 
-  vec2 t = (position.xy + time) * 0.005;
+  vec2 t = (position.xy + time * 0.0) * 0.005;
   float n1 = snoise(t) * 300.0;
   
   

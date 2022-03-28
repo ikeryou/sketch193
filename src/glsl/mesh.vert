@@ -47,7 +47,7 @@ void main(){
   vec3 p = position;
   // p = rotate(p, ang * info.y * 0.01, vec3(1.0, 0.0, 0.0));
 
-  vec2 t = (position.xy + time) * 0.005;
+  vec2 t = (position.xy + time * 0.0) * 0.005;
   float n1 = snoise(t) * 300.0;
   // // float n2 = snoise(position.yy * 0.01 +time info.x) * 10.0;
   // p.x += (n1) * move.x;
