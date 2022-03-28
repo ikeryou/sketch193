@@ -17,14 +17,15 @@ export class Con extends Canvas {
 
   private _con: Object3D;
   private _mesh:Points | undefined;
-  private _ang:number = 0;
+  // private _ang:number = 0;
   private _val:number = 0;
   private _color:Array<Color> = [];
   private _imgSize:number = 512;
   private _sample:Array<any> = [];
   private _oldAng:number = -1;
-  private _rotCnt:number = 0;
+  // private _rotCnt:number = 0;
   private _move:Vector3 = new Vector3();
+  private _rot:Vector3 = new Vector3();
 
   constructor(opt: any) {
     super(opt);
@@ -50,18 +51,17 @@ export class Con extends Canvas {
               }
               this._val = Number(e.alpha)
 
-              // const alpha = e.alpha
-              Param.instance.debug.innerHTML = 'beta ' + Number(e.beta) + ' gamma ' + Number(e.gamma)
+              Param.instance.debug.innerHTML = 'beta:' + Math.floor(Number(e.beta)) + ' gamma:' + Math.floor(Number(e.gamma))
 
-              if((this._oldAng - this._val) > 300) {
-                this._rotCnt++
-              }
-              if((this._oldAng - this._val) < -300) {
-                this._rotCnt--
-              }
+              // if((this._oldAng - this._val) > 300) {
+              //   this._rotCnt++
+              // }
+              // if((this._oldAng - this._val) < -300) {
+              //   this._rotCnt--
+              // }
 
-              // this._move.y = Number(e.beta)
-
+              this._rot.y = Number(e.gamma)
+              this._rot.z = Number(e.beta)
             }, true)
             document.querySelector('.l-btn')?.classList.add('-none')
           }
@@ -152,20 +152,13 @@ export class Con extends Canvas {
       this._val += 2
       this._val = this._val % 360
 
-      if((this._oldAng - this._val) > 300) {
-        this._rotCnt++
-      }
-
-      // this._move.x = Math.sin(this._c * 0.1)
-      // this._move.y = Math.cos(this._c * -0.078)
-    } else {
-      // this._oldAng = this._val
       // if((this._oldAng - this._val) > 300) {
       //   this._rotCnt++
       // }
-      // if((this._oldAng - this._val) < -300) {
-      //   this._rotCnt--
-      // }
+
+      const kake2 = 1.5
+      this._move.x = Math.sin(this._c * 0.1) * kake2
+      this._move.y = Math.cos(this._c * -0.078) * kake2
     }
 
     if(this._mesh != undefined) {
@@ -173,14 +166,19 @@ export class Con extends Canvas {
       this._mesh.scale.set(s, s, 1)
 
       this._setUni(this._mesh, 'size', 10)
-      this._setUni(this._mesh, 'time', this._c)
+      this._setUni(this._mesh, 'time', this._c * 2)
 
-      const ang = this._val + (this._rotCnt * 360);
-      this._ang += (ang - this._ang) * 0.1
-      this._move.x = Math.sin(Util.instance.radian(this._ang)) * 2
-      this._setUni(this._mesh, 'ang', Util.instance.radian(this._ang))
+      // const ang = this._val + (this._rotCnt * 360);
+      // this._ang += (ang - this._ang) * 0.1
+      // this._move.x = Math.sin(Util.instance.radian(this._ang)) * 2
+      // this._setUni(this._mesh, 'ang', Util.instance.radian(this._ang))
 
+      const kake = 3
+      const tgX = Util.instance.map(this._rot.y, -1, 1, -90, 90) * kake
+      const tgY = Util.instance.map(this._rot.z, 1, -1, -90, 90) * kake
 
+      this._move.x += (tgX - this._move.x) * 0.1
+      this._move.y += (tgY - this._move.y) * 0.1
     }
 
     if (this.isNowRenderFrame()) {
