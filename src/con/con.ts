@@ -173,7 +173,7 @@ export class Con extends Canvas {
       // this._move.x = Math.sin(Util.instance.radian(this._ang)) * 2
       // this._setUni(this._mesh, 'ang', Util.instance.radian(this._ang))
 
-      const kake = 3
+      const kake = 1.5
       const tgX = Util.instance.map(this._rot.y, -1, 1, -90, 90) * kake
       const tgY = Util.instance.map(this._rot.z, 1, -1, -90, 90) * kake
 
